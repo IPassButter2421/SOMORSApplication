@@ -19,19 +19,17 @@ stages:
     - job: 'BuildProcess'
       displayName: 'ORS Application Build Job'
       pool: 
-        name: 'ORSAgentPool'      
-        demands:
-         - agent.name -equals ORSBuildAgent
+        vmImage: 'Ubuntu-16.04'
       steps:         
-        - task: JavaToolInstaller@0
-          displayName: Java Tool Installer
-          inputs:
-            versionSpec: '8'
-            jdkArchitectureOption: 'x64'
-            jdkSourceOption: 'LocalDirectory'
-            jdkFile: $(jdkFilePath)
-            jdkDestinationDirectory: $(jdkDestinationPath)
-            cleanDestinationDirectory: false
+       # - task: JavaToolInstaller@0
+        #  displayName: Java Tool Installer
+        #  inputs:
+        #    versionSpec: '8'
+         #   jdkArchitectureOption: 'x64'
+          #  jdkSourceOption: 'LocalDirectory'
+          #  jdkFile: $(jdkFilePath)
+          #  jdkDestinationDirectory: $(jdkDestinationPath)
+           # cleanDestinationDirectory: false
         
         - task: Maven@3
           displayName: 'Maven Build'
@@ -48,9 +46,9 @@ stages:
             #goals: 'integration-test -DskipIntegrationTests=false -Dmaven.test.failure.ignore=true'
         - task: CopyFiles@2
           inputs:
-            SourceFolder: '$(Build.SourcesDirectory)\target\'
+            SourceFolder: '$(Build.SourcesDirectory)/target/'
             Contents: '*.war'
-            TargetFolder: '$(Build.ArtifactStagingDirectory)\$(TargetApplicationName)\'
+            TargetFolder: '$(Build.ArtifactStagingDirectory)/$(TargetApplicationName)/'
             
           # Archive files
           # Compress files into .7z, .tar.gz, or .zip
@@ -67,4 +65,4 @@ stages:
           inputs:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildNumber).zip'
             ArtifactName: '$(Build.BuildNumber)'
-            artifactType:  container
+            artifactType:  container 
