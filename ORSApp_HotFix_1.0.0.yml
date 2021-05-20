@@ -23,15 +23,15 @@ stages:
         demands:
          - agent.name -equals ORSBuildAgent
       steps:         
-        - task: JavaToolInstaller@0
-          displayName: Java Tool Installer
-          inputs:
-            versionSpec: '8'
-            jdkArchitectureOption: 'x64'
-            jdkSourceOption: 'LocalDirectory'
-            jdkFile: $(jdkFilePath)
-            jdkDestinationDirectory: $(jdkDestinationPath)
-            cleanDestinationDirectory: false
+       # - task: JavaToolInstaller@0
+        #  displayName: Java Tool Installer
+        #  inputs:
+         #   versionSpec: '8'
+           # jdkArchitectureOption: 'x64'
+           # jdkSourceOption: 'LocalDirectory'
+            #jdkFile: $(jdkFilePath)
+            #jdkDestinationDirectory: $(jdkDestinationPath)
+           # cleanDestinationDirectory: false
         
         - task: Maven@3
           displayName: 'Maven Build'
