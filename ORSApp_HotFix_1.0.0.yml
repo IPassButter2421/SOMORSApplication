@@ -6,7 +6,7 @@
 name: $(BuildDefinitionName)$(Rev:.r)
 
 trigger:
-- ORS_Release
+- ORS_HotFix
 #parameters:
   #- name: variablegroup1
     #default: ORSBuildVariable
